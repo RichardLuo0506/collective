@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="App">
+
+<head>
+    <title>The Collective</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/fonts/icomoon.css">
+    <!-- Auth0 Lock -->
+    <script src="https://cdn.auth0.com/js/lock/11.12.1/lock.min.js"></script>
+</head>
+
+<body ng-controller="Core as core" ng-cloak>
+    <div id="menu-toggle" ng-click="core.toggleMenu($event, 'menu')" ng-class="{'invis': core.menuIsOpen}"><i class="material-icons">menu</i></div>
+    <div id="perspective" class="perspective effect-rotateleft">
+        <div id="perspective-container" ng-click="core.toggleMenu($event, 'view')">
+            <div id="view-wrapper">
+                <!-- wrapper needed for scroll -->
+                <ui-view></ui-view>
+                <h1>1</h1>
+                <h2>2</h2>
+                <h1>3</h1>
+                <h2>4</h2>
+                <h1>5</h1>
+                <h2>6</h2>
+                <h1>7</h1>
+                <h2>8</h2>
+                <h1>9</h1>
+                <h2>10</h2>
+                <h1>11</h1>
+                <h2>12</h2>
+                <h1>asdfasdf</h1>
+                <h2>asdfasdf</h2>
+                <h1>asdfasdf</h1>
+                <h2>asdfasdf</h2>
+                <h1>asdfasdf</h1>
+                <h2>asdfasdf</h2>
+                <h1>asdfasdf</h1>
+                <h2>asdfasdf</h2>
+                <h1>asdfasdf</h1>
+                <h2>asdfasdf</h2>
+                <!-- ... -->
+            </div><!-- wrapper -->
+        </div><!-- /container -->
+        <nav class="outer-nav left vertical">
+            <div class="profile-nav">
+                <a ng-click="core.login()" ng-if="!core.isAuthenticated()"><span class="icon-enter">login</span></a>
+                <a ng-click="core.logout()" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated()"><span class="icon-exit">logout</span></a>
+            </div>
+            <a ui-sref="home" ng-click="core.toggleMenu($event, 'view')"><span class="icon-home">Home</span></a>
+            <a ng-click="core.toggleMenu($event, 'view')"><span class="icon-newspaper">News</span></a>
+            <a ui-sref="profile" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated()"><span class="icon-profile">Profile</span></a>
+            <a ui-sref="coinpickz" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated()"><span class="icon-coin-dollar">Coin Pickz</span></a>
+            <a ng-click="core.toggleMenu($event, 'view')"><span class="icon-image">Under Construction</span></a>
+            <a ng-click="core.toggleMenu($event, 'view')"><span class="icon-upload">Coming Soon</span></a>
+        </nav>
+    </div><!-- /perspective -->
+    <!-- <div ng-app="APP" ng-controller="core as vm" ng-cloak>
+    </div> -->
+    </script>
+    <!-- Auth0 -->
+    <script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Lodash -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <!-- AngularJS -->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
+    <script src="node_modules/angular-storage/dist/angular-storage.min.js"></script>
+    <script src="node_modules/angular-lock/dist/angular-lock.min.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- Moment -->
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone.min.js"></script>
+    <!-- Main App -->
+    <script src="app.module.js"></script>
+    <script src="auth.service.js"></script>
+    <script src="app.config.js"></script>
+    <script src="core.ctr.js"></script>
+    <script src="components/profile/profile.ctr.js"></script>
+    <!-- <script src="/app/app.routes.js"></script> -->
+    <!-- <script src="/app/home/home.controller.js"></script> -->
+    <!-- <script src="/app/about/about.controller.js"></script> -->
+    <!-- <script src="/app/contact/contact.controller.js"></script> -->
+</body>
+
+</html>

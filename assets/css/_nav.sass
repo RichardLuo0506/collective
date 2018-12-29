@@ -1,0 +1,254 @@
+#menu-toggle
+	display: inline-block
+	position: fixed
+	top: 15px
+	right: 20px
+	z-index: 100
+	transition: 200ms $ease-natural
+
+	i
+		font-size: 40px
+		color: #5886ee
+		transition: 200ms $ease-natural
+
+	&:hover i
+		cursor: pointer
+		color: #8fadf1
+
+	&.invis
+		opacity: 0
+
+#perspective
+	width: 100%
+	height: 100%
+	background: url(../images/bitcoin-wallpaper.jpg) center center no-repeat
+	background-size: cover
+	position: relative
+
+	&:before
+		content: ""
+		background: -webkit-linear-gradient(135deg, #073e3e 0%, #10143e 100%)
+		background: linear-gradient(135deg, #073e3e 0%, #10143e 100%)
+		opacity: 0.7
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+
+#perspective-container
+	background: #fff
+	min-height: 100%
+	position: relative
+	outline: 1px solid rgba(0, 0, 0, 0)
+	z-index: 10
+	-webkit-transform: translateZ(0) translateX(0) rotateY(0deg)
+
+	// reset transforms (Chrome bug)
+	transform: translateZ(0) translateX(0) rotateY(0deg)
+
+	&::after
+		content: ""
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 0px
+		opacity: 0
+		background: rgba(0, 0, 0, 0.2)
+
+		// the transition delay of the height needs to be synced with the container transition time
+		-webkit-transition: opacity 500ms, height 0s 500ms
+		transition: opacity 500ms, height 0s 500ms
+
+#view-wrapper
+	position: relative
+	overflow: hidden
+
+.component
+	margin: 0 auto
+	width: 60%
+	text-align: justify
+	font-size: 1.5em
+
+// Modal view
+
+#perspective.modalview
+	position: fixed
+	-webkit-perspective: 1500px
+	perspective: 1500px
+
+.modalview
+	#perspective-container
+		position: absolute
+		overflow: hidden
+		width: 100%
+		height: 100%
+		cursor: pointer
+		-webkit-backface-visibility: hidden
+		backface-visibility: hidden
+
+	#view-wrapper
+		-webkit-transform: translateZ(-1px)
+
+		// solves a rendering bug in Chrome on Windows
+
+.animate #perspective-container::after
+	opacity: 1
+	height: 101%
+	-webkit-transition: opacity 0.3s
+	transition: opacity 0.3s
+
+.animate #perspective-container:hover
+	&::after
+		opacity: 0
+
+// Outer Nav
+
+.outer-nav
+	position: absolute
+	height: auto
+	font-size: 2em
+
+	&.vertical
+		top: 50%
+		-webkit-transform: translateY(-50%)
+		transform: translateY(-50%)
+		-webkit-transform-style: preserve-3d
+		transform-style: preserve-3d
+
+	&.horizontal
+		left: 50%
+		width: 75%
+		max-width: 1000px
+		text-align: center
+		-webkit-transform: translateX(-50%)
+		transform: translateX(-50%)
+
+	&.left
+		left: 17%
+
+	a
+		display: inline-block
+		white-space: nowrap
+		font-weight: 300
+		margin: 0 0 30px 0
+		color: #fff
+		-webkit-transform-style: preserve-3d
+		transform-style: preserve-3d
+
+		&:hover
+			cursor: pointer
+
+			span
+				color: #5886ee
+
+	a span
+		transition: 300ms
+
+	&.vertical a
+		display: block
+
+	&.horizontal a
+		margin: 15px 20px
+
+	a span::before
+		display: inline-block
+		font-family: "icomoon"
+		speak: none
+		font-style: normal
+		font-weight: normal
+		font-variant: normal
+		text-transform: none
+		line-height: inherit
+		margin-right: 15px
+		padding-bottom: 8px
+		vertical-align: middle
+		-webkit-font-smoothing: antialiased
+		-moz-osx-font-smoothing: grayscale
+		-webkit-backface-visibility: hidden
+		backface-visibility: hidden
+
+// Effect Rotate Left
+
+.effect-rotateleft
+	background: #e96e4f
+
+	#perspective-container
+		-webkit-transition: -webkit-transform 500ms $ease-natural
+		transition: transform 500ms $ease-natural
+		-webkit-transform-origin: 100% 50%
+		transform-origin: 100% 50%
+
+		&::after
+			background: rgba(255, 255, 255, 0.6)
+
+	&.animate #perspective-container
+		-webkit-transform: perspective(1800px) translateZ(-1300px) translateX(0%) rotateY(-35deg)
+		transform: perspective(1800px) translateZ(-1300px) translateX(0%) rotateY(-35deg)
+		transition: 800ms $ease-natural
+
+.no-csstransforms3d .effect-rotateleft.animate #perspective-container
+	left: -75%
+
+.effect-rotateleft
+	.outer-nav .profile-nav
+		opacity: 0
+		-webkit-transform: translateX(-500px) translateZ(-1000px)
+		transform: translateX(-500px) translateZ(-1000px)
+		-webkit-transition: 500ms $ease-natural
+		transition: 500ms $ease-natural
+		-webkit-transform-style: preserve-3d
+		transform-style: preserve-3d
+		-webkit-transition-delay: 40ms
+		transition-delay: 40ms
+
+	.outer-nav > a
+		opacity: 0
+		-webkit-transform: translateX(-500px) translateZ(-1000px)
+		transform: translateX(-500px) translateZ(-1000px)
+		-webkit-transition: 500ms $ease-natural
+		transition: 500ms $ease-natural
+		-webkit-transform-style: preserve-3d
+		transform-style: preserve-3d
+
+		&:nth-child(1)
+			-webkit-transition-delay: 80ms
+			transition-delay: 80ms
+
+		&:nth-child(2)
+			-webkit-transition-delay: 120ms
+			transition-delay: 120ms
+
+		&:nth-child(3)
+			-webkit-transition-delay: 160ms
+			transition-delay: 160ms
+
+		&:nth-child(4)
+			-webkit-transition-delay: 200ms
+			transition-delay: 200ms
+
+		&:nth-child(5)
+			-webkit-transition-delay: 240ms
+			transition-delay: 240ms
+
+		&:nth-child(6)
+			-webkit-transition-delay: 280ms
+			transition-delay: 280ms
+
+		&:nth-child(7)
+			-webkit-transition-delay: 320ms
+			transition-delay: 320ms
+
+		&:nth-child(8)
+			-webkit-transition-delay: 360ms
+			transition-delay: 360ms
+
+		&:nth-child(9)
+			-webkit-transition-delay: 400ms
+			transition-delay: 400ms
+
+	&.animate .outer-nav > a, &.animate .outer-nav .profile-nav
+		opacity: 1
+		-webkit-transform: translateX(0) translateZ(0)
+		transform: translateX(0) translateZ(0)
