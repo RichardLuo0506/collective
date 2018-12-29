@@ -22,6 +22,8 @@
         init();
 
         function init() {
+            core.menuIsOpen = false;
+
             core.docElem = $window.document.documentElement;
             core.perspective = $('#perspective');
             core.viewWrapper = $('#view-wrapper');
@@ -64,10 +66,12 @@
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
 
                 core.perspective.addClass('modalview');
+                core.menuIsOpen = true;
                 _.defer(function() { core.perspective.addClass('animate') });
             } else if (type === 'view') {
                 // contentWrapper.style.top = '0px';
                 core.perspective.removeClass('animate');
+                core.menuIsOpen = false;
                 _.delay(function() {
                     core.perspective.removeClass('modalview');
                     // mac chrome issue:
