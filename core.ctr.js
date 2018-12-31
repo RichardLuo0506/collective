@@ -14,7 +14,6 @@
         // login
         core.login = login;
         core.logout = logout;
-        core.isAuthenticated = isAuthenticated;
 
         // menu
         core.toggleMenu = toggleMenu;
@@ -23,6 +22,7 @@
 
         function init() {
             core.menuIsOpen = false;
+            core.isAuthenticated = false;
 
             core.docElem = $window.document.documentElement;
             core.perspective = $('#perspective');
@@ -30,15 +30,12 @@
 
             $scope.$on('authenticated', function(event) {
                 core.toggleMenu({}, 'view');
+                core.isAuthenticated = true;
             })
 
             $scope.$on('logout', function(event) {
                 core.logout();
             })
-        }
-
-        function isAuthenticated() {
-            return authService.isAuthenticated();
         }
 
         function login() {
@@ -49,6 +46,7 @@
             authService.logout();
             $location.path('/home');
             core.toggleMenu({}, 'view');
+            core.isAuthenticated = false;
         }
 
         function scrollY() {

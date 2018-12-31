@@ -4,7 +4,7 @@
     angular.module('App')
         .service('authService', authService);
 
-    authService.$inject = ['lock', '$location','store', '$state', '$rootScope'];
+    authService.$inject = ['lock', '$location', 'store', '$state', '$rootScope'];
 
     function authService(lock, $location, store, $state, $rootScope) {
         function login() {
@@ -18,6 +18,7 @@
             store.remove('access_token');
             store.remove('id_token');
             store.remove('expires_at');
+            store.remove('userInfo');
         }
 
         function handleAuthentication() {
@@ -44,6 +45,20 @@
             store.set('access_token', authResult.accessToken);
             store.set('id_token', authResult.idToken);
             store.set('expires_at', expiresAt);
+            console.log('login authResult', authResult);
+
+            var payload = authResult.idTokenPayload;
+            var userInfo = {
+                email: payload.email,
+                email_verified: payload.email_verified,
+                name: payload.name,
+                nickname: payload.nickname,
+                picture: payload.picture,
+                updated_at: payload.updated_at,
+                authorization: payload['https://thecollectiveholdings.io/user_authorization']
+            };
+            store.set('userInfo', JSON.stringify(userInfo));
+            $rootScope.userInfo = userInfo;
         }
 
         function isAuthenticated() {
@@ -53,11 +68,16 @@
             return new Date().getTime() < expiresAt;
         }
 
+        function getUserInfo () {
+        	return JSON.parse(store.get('userInfo'));
+        }
+
         return {
             login: login,
             logout: logout,
             handleAuthentication: handleAuthentication,
-            isAuthenticated: isAuthenticated
+            isAuthenticated: isAuthenticated,
+            getUserInfo: getUserInfo
         };
     }
 })();

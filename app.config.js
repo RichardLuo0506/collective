@@ -40,15 +40,30 @@
                 url: '/home',
                 templateUrl: 'components/home/home.tpl.html'
             })
-            .state('profile', {
-                url: '/profile',
-                templateUrl: 'components/profile/profile.tpl.html',
-                controller: 'Profile as vm'
+            .state('dashboard', {
+                url: '/dashboard',
+                templateUrl: 'components/dashboard/dashboard.tpl.html',
+                controller: 'Dashboard as vm'
+            })
+            .state('account', {
+                url: '/account',
+                templateUrl: 'components/account/account.tpl.html',
+                controller: 'Account as vm'
+            })
+            .state('coinpickz', {
+                url: '/coinpickz',
+                templateUrl: 'components/coinpickz/coinpickz.tpl.html',
+                controller: 'Coinpickz as vm'
+            })
+            .state('membership', {
+                url: '/membership',
+                templateUrl: 'components/membership/membership.tpl.html',
+                controller: 'Membership as vm'
             })
 
         function redirect($rootScope) {
             return {
-                responseError: function (rejection) {
+                responseError: function(rejection) {
                     if (rejection.status === 401) {
                         $rootScope.$broadcast('logout');
                     }
@@ -65,12 +80,14 @@
     function run(authService, $rootScope, store, jwtHelper) {
         authService.handleAuthentication();
 
-        // $rootScope.$on('$locationChangeStart', function() {
-        //     var token = store.get('id_token');
-        //     console.log('', authService.isAuthenticated());
-        //     if (token && !jwtHelper.isTokenExpired(token)) {
+        $rootScope.$on('$locationChangeStart', function() {
+            var token = store.get('id_token');
 
-        //     }
-        // });
+            // if still authenticated, set profile
+            if (token && !jwtHelper.isTokenExpired(token)) {
+                $rootScope.$broadcast('authenticated');
+                $rootScope.userInfo = $rootScope.userInfo || authService.getUserInfo();
+            }
+        });
     }
 })();

@@ -18,42 +18,22 @@
             <div id="view-wrapper">
                 <!-- wrapper needed for scroll -->
                 <ui-view></ui-view>
-                <h1>1</h1>
-                <h2>2</h2>
-                <h1>3</h1>
-                <h2>4</h2>
-                <h1>5</h1>
-                <h2>6</h2>
-                <h1>7</h1>
-                <h2>8</h2>
-                <h1>9</h1>
-                <h2>10</h2>
-                <h1>11</h1>
-                <h2>12</h2>
-                <h1>asdfasdf</h1>
-                <h2>asdfasdf</h2>
-                <h1>asdfasdf</h1>
-                <h2>asdfasdf</h2>
-                <h1>asdfasdf</h1>
-                <h2>asdfasdf</h2>
-                <h1>asdfasdf</h1>
-                <h2>asdfasdf</h2>
-                <h1>asdfasdf</h1>
-                <h2>asdfasdf</h2>
                 <!-- ... -->
             </div><!-- wrapper -->
         </div><!-- /container -->
         <nav class="outer-nav left vertical">
             <div class="profile-nav">
-                <a ng-click="core.login()" ng-if="!core.isAuthenticated()"><span class="icon-enter">login</span></a>
-                <a ng-click="core.logout()" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated()"><span class="icon-exit">logout</span></a>
+                <div class="profile-picture" ng-if="core.isAuthenticated" background-src="{{userInfo.picture}}"></div>
             </div>
+            <a ng-click="core.login()" ng-if="!core.isAuthenticated"><span class="icon-enter">login</span></a>
+            <a ng-click="core.logout()" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated"><span class="icon-exit">logout</span></a>
             <a ui-sref="home" ng-click="core.toggleMenu($event, 'view')"><span class="icon-home">Home</span></a>
-            <a ng-click="core.toggleMenu($event, 'view')"><span class="icon-newspaper">News</span></a>
-            <a ui-sref="profile" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated()"><span class="icon-profile">Profile</span></a>
-            <a ui-sref="coinpickz" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated()"><span class="icon-coin-dollar">Coin Pickz</span></a>
-            <a ng-click="core.toggleMenu($event, 'view')"><span class="icon-image">Under Construction</span></a>
-            <a ng-click="core.toggleMenu($event, 'view')"><span class="icon-upload">Coming Soon</span></a>
+            <a ui-sref="dashboard" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated"><span class="icon-user-tie">Dashboard</span></a>
+            <!-- <a ui-sref="account" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated"><span class="icon-user-tie">Account</span></a> -->
+            <a ui-sref="membership" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated"><span class="icon-user-tie">Membership</span></a>
+            <!-- <a ui-sref="coinpickz" ng-click="core.toggleMenu($event, 'view')" ng-if="core.isAuthenticated"><span class="icon-coin-dollar">Coin Pickz</span></a> -->
+            <a ng-click="core.toggleMenu($event, 'view')"><span class="icon-file-text">Resources</span></a>
+            <a ng-click="core.toggleMenu($event, 'view')"><span class="icon-envelop">Contact Us</span></a>
         </nav>
     </div><!-- /perspective -->
     <!-- <div ng-app="APP" ng-controller="core as vm" ng-cloak>
@@ -79,8 +59,12 @@
     <script src="app.module.js"></script>
     <script src="auth.service.js"></script>
     <script src="app.config.js"></script>
+    <script src="app.directives.js"></script>
     <script src="core.ctr.js"></script>
-    <script src="components/profile/profile.ctr.js"></script>
+    <script src="components/dashboard/dashboard.ctr.js"></script>
+    <script src="components/account/account.ctr.js"></script>
+    <script src="components/coinpickz/coinpickz.ctr.js"></script>
+    <script src="components/membership/membership.ctr.js"></script>
     <!-- <script src="/app/app.routes.js"></script> -->
     <!-- <script src="/app/home/home.controller.js"></script> -->
     <!-- <script src="/app/about/about.controller.js"></script> -->

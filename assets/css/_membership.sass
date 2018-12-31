@@ -1,0 +1,52 @@
+.membership-view
+	.products-container
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-evenly
+		// &:after
+		// 	content: ''
+		// 	flex: auto
+		.product-item
+			display: flex
+			flex-direction: column
+			flex: 0 0 300px
+			background: white
+			margin: 0 15px 5%
+			min-height: 300px
+
+			.preview-img
+				width: 100%
+
+			.item-info
+				padding: 20px
+				.item-title
+					font-size: 20px
+					margin-bottom: 20px
+				.item-desc
+					font-size: 14px
+					line-height: 1.6
+					color: #73818c
+					font-weight: 300
+			.spacer
+				flex: 1
+			.item-sub-btn
+				text-align: center
+				padding: 20px 0
+				color: $green
+				transition: 300ms
+				border-top: 1px solid $bg
+				&:hover
+					cursor: pointer
+					background: $green
+					color: white
+					border-color: $green
+				&.active
+					color: white
+					background: $blue
+					border-color: $blue
+				&.free
+					pointer-events: none
+					span
+						font-weight: 300
+						font-size: 10px
+						vertical-align: super
