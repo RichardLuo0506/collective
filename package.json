@@ -14,6 +14,7 @@
     "angular-aria": "^1.7.5",
     "angular-jwt": "^0.1.10",
     "angular-lock": "^3.0.0",
+    "angular-material": "^1.1.11",
     "angular-messages": "^1.7.5",
     "angular-storage": "0.0.15",
     "angular-ui-router": "^1.0.20"

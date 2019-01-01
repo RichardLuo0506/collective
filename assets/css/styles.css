@@ -370,11 +370,11 @@ h6 {
   top: 15px;
   right: 20px;
   z-index: 100;
-  transition: 200ms cubic-bezier(0.4, 0, 0.2, 1); }
+  transition: 200ms; }
   #menu-toggle i {
     font-size: 40px;
-    color: #03a9f4;
-    transition: 200ms cubic-bezier(0.4, 0, 0.2, 1); }
+    color: #4880ff;
+    transition: 200ms; }
   #menu-toggle:hover i {
     cursor: pointer;
     color: #4ea3ff; }
@@ -407,8 +407,7 @@ h6 {
   z-index: 10;
   -webkit-transform: translateZ(0) translateX(0) rotateY(0deg);
   transform: translateZ(0) translateX(0) rotateY(0deg); }
-  #perspective-container::after {
-    content: "";
+  #perspective-container .perspective-view-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -420,8 +419,7 @@ h6 {
     transition: opacity 500ms, height 0s 500ms; }
 
 #view-wrapper {
-  position: relative;
-  overflow: hidden; }
+  position: relative; }
 
 .component {
   margin: 0 auto;
@@ -445,13 +443,13 @@ h6 {
 .modalview #view-wrapper {
   -webkit-transform: translateZ(-1px); }
 
-.animate #perspective-container::after {
+.animate #perspective-container .perspective-view-overlay {
   opacity: 1;
   height: 101%;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s; }
 
-.animate #perspective-container:hover::after {
+.animate #perspective-container:hover .perspective-view-overlay {
   opacity: 0; }
 
 .outer-nav {
@@ -511,20 +509,25 @@ h6 {
     -moz-osx-font-smoothing: grayscale;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden; }
+  .outer-nav a span i.material-icons {
+    font-size: 32px;
+    margin-right: 15px;
+    padding-bottom: 8px;
+    vertical-align: middle; }
 
 .effect-rotateleft {
   background: #e96e4f; }
   .effect-rotateleft #perspective-container {
-    -webkit-transition: -webkit-transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition: -webkit-transform 500ms;
+    transition: transform 500ms;
     -webkit-transform-origin: 100% 50%;
     transform-origin: 100% 50%; }
-    .effect-rotateleft #perspective-container::after {
+    .effect-rotateleft #perspective-container .perspective-view-overlay {
       background: rgba(255, 255, 255, 0.6); }
   .effect-rotateleft.animate #perspective-container {
     -webkit-transform: perspective(1800px) translateZ(-1300px) translateX(0%) rotateY(-35deg);
     transform: perspective(1800px) translateZ(-1300px) translateX(0%) rotateY(-35deg);
-    transition: 800ms cubic-bezier(0.4, 0, 0.2, 1); }
+    transition: 800ms; }
 
 .no-csstransforms3d .effect-rotateleft.animate #perspective-container {
   left: -75%; }
@@ -533,8 +536,8 @@ h6 {
   opacity: 0;
   -webkit-transform: translateX(-500px) translateZ(-1000px);
   transform: translateX(-500px) translateZ(-1000px);
-  -webkit-transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: 500ms;
+  transition: 500ms;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-transition-delay: 40ms;
@@ -543,8 +546,8 @@ h6 {
   opacity: 0;
   -webkit-transform: translateX(-500px) translateZ(-1000px);
   transform: translateX(-500px) translateZ(-1000px);
-  -webkit-transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: 500ms;
+  transition: 500ms;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d; }
   .effect-rotateleft .outer-nav > a:nth-child(1) {
@@ -603,6 +606,74 @@ h6 {
       font-size: 16px;
       font-weight: 300; }
 
+.dashboard-view {
+  background: #f5f6fa;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh; }
+  .dashboard-view .nav-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    transition: 300ms; }
+    .dashboard-view .nav-btn i {
+      transition: 300ms;
+      color: #bfc5d1; }
+      .dashboard-view .nav-btn i.icomoon {
+        font-size: 22px; }
+    .dashboard-view .nav-btn:hover {
+      cursor: pointer; }
+      .dashboard-view .nav-btn:hover i {
+        color: #4880ff; }
+  .dashboard-view .topbar {
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid #f0f0f3; }
+    .dashboard-view .topbar .menu-btn {
+      border-right: 1px solid #f0f0f3; }
+    .dashboard-view .topbar .subview-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #40495f;
+      font-weight: 600;
+      font-size: 24px;
+      letter-spacing: 0.5px; }
+    .dashboard-view .topbar .user {
+      display: flex;
+      align-items: center;
+      border-left: 1px solid #f0f0f3;
+      padding: 0 30px 0 20px; }
+      .dashboard-view .topbar .user .profile-picture {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px; }
+      .dashboard-view .topbar .user .user-email {
+        color: #40495f;
+        margin-left: 20px;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.5px; }
+  .dashboard-view .bottom-section .leftbar {
+    width: 80px;
+    height: 100%;
+    background: white;
+    border-right: 1px solid #f0f0f3; }
+    .dashboard-view .bottom-section .leftbar .nav-btn {
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent; }
+      .dashboard-view .bottom-section .leftbar .nav-btn.active {
+        border-right: 2px solid #4880ff; }
+  .dashboard-view .bottom-section .subview-wrapper {
+    overflow-y: auto; }
+    .dashboard-view .bottom-section .subview-wrapper .subview {
+      padding: 30px; }
+
 .coinpickz-view .exchange-header {
   margin: 0 0 20px 20px;
   display: flex;
@@ -618,8 +689,8 @@ h6 {
   .coinpickz-view .coins-container .coin {
     flex: 0 0 20%;
     background: white;
-    border-right: 1px solid #f4f4f5;
-    border-bottom: 1px solid #f4f4f5;
+    border-right: 1px solid #f0f0f3;
+    border-bottom: 1px solid #f0f0f3;
     text-align: center;
     padding: 20px 0; }
 
@@ -661,8 +732,8 @@ h6 {
         border-color: #5bc179; }
       .membership-view .products-container .product-item .item-sub-btn.active {
         color: white;
-        background: #03a9f4;
-        border-color: #03a9f4; }
+        background: #4880ff;
+        border-color: #4880ff; }
       .membership-view .products-container .product-item .item-sub-btn.free {
         pointer-events: none; }
         .membership-view .products-container .product-item .item-sub-btn.free span {

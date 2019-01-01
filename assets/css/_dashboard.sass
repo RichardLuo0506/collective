@@ -1,0 +1,70 @@
+.dashboard-view
+	background: $bg2
+	position: fixed
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	height: 100vh
+	.nav-btn
+		display: flex
+		justify-content: center
+		align-items: center
+		width: 80px
+		height: 80px
+		transition: 300ms
+		
+		i
+			transition: 300ms
+			color: $gray
+			&.icomoon
+				font-size: 22px
+		&:hover
+			cursor: pointer
+			i 
+				color: $blue
+	.topbar
+		height: 80px
+		background: white
+		border-bottom: 1px solid $border
+		.menu-btn
+			border-right: 1px solid $border
+		.subview-title
+			display: flex
+			align-items: center
+			justify-content: center
+			color: $dark-text
+			font-weight: 600
+			font-size: 24px
+			letter-spacing: .5px
+		.user
+			display: flex
+			align-items: center
+			border-left: 1px solid $border
+			padding: 0 30px 0 20px
+			.profile-picture
+				width: 40px
+				height: 40px
+				border-radius: 5px
+			.user-email
+				color: $dark-text
+				margin-left: 20px
+				font-weight: 600
+				font-size: 14px
+				letter-spacing: .5px
+		
+	.bottom-section
+		.leftbar
+			width: 80px
+			height: 100%
+			background: white
+			border-right: 1px solid $border
+			.nav-btn
+				border-left: 2px solid transparent
+				border-right: 2px solid transparent
+				&.active
+					border-right: 2px solid $blue
+		.subview-wrapper
+			overflow-y: auto
+			.subview
+				padding: 30px

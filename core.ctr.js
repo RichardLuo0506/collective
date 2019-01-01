@@ -29,13 +29,21 @@
             core.viewWrapper = $('#view-wrapper');
 
             $scope.$on('authenticated', function(event) {
-                core.toggleMenu({}, 'view');
+                core.toggleMenu('view');
                 core.isAuthenticated = true;
             })
 
             $scope.$on('logout', function(event) {
                 core.logout();
             })
+
+            $scope.$on('$locationChangeSuccess', function() {
+                core.currentPath = $location.path();
+            });
+
+            $scope.$on('openMenu', function() {
+                core.toggleMenu('menu');
+            });
         }
 
         function login() {
@@ -45,7 +53,7 @@
         function logout() {
             authService.logout();
             $location.path('/home');
-            core.toggleMenu({}, 'view');
+            core.toggleMenu('view');
             core.isAuthenticated = false;
         }
 
@@ -53,10 +61,8 @@
             return $window.pageYOffset || core.docElem.scrollTop;
         }
 
-        function toggleMenu(e, type) {
+        function toggleMenu(type) {
             if (type === 'menu') {
-                e.stopPropagation();
-                e.preventDefault();
                 core.docScroll = scrollY();
                 core.viewWrapper.css('top', core.docScroll * -1 + 'px');
 

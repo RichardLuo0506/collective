@@ -1,3 +1,30 @@
-<div class="single-view dashboard-view">
-    Dashboard
+<div class="dashboard-view" layout="column">
+    <div class="topbar" layout="row">
+        <div class="nav-btn menu-btn" ng-click="dashboard.openMenu()"><i class="material-icons">menu</i></div>
+        <div class="subview-title" flex>{{dashboard.subviewTitle}}</div>
+        <div class="user">
+            <div class="profile-picture" background-src="{{userInfo.picture}}"></div>
+            <div class="user-email">{{userInfo.email}}</div>
+        </div>
+    </div>
+    <div class="bottom-section" flex layout="row">
+        <div class="leftbar">
+            <div class="nav-btn" ui-sref="dashboard.home" ng-class="{'active': dashboard.subviewTitle === 'Home'}"><i class="material-icons">dashboard</i>
+                <md-tooltip md-direction="right">Dashboard</md-tooltip>
+            </div>
+            <div class="nav-btn"><i class="material-icons">pool</i>
+                <md-tooltip md-direction="right">Legit Pool</md-tooltip>
+            </div>
+            <div class="nav-btn" ui-sref="dashboard.coinpickz" ng-class="{'active': dashboard.subviewTitle === 'Coin Pickz'}"><i class="icomoon icon-coin-dollar"></i>
+                <md-tooltip md-direction="right">Coin Pickz</md-tooltip>
+            </div>
+            <div class="nav-btn"><i class="icomoon icon-newspaper"></i>
+                <md-tooltip md-direction="right">News</md-tooltip>
+            </div>
+            <div class="nav-btn"><i class="icomoon icon-books"></i>
+                <md-tooltip md-direction="right">Resources</md-tooltip>
+            </div>
+        </div>
+        <ui-view flex class="subview-wrapper"></ui-view>
+    </div>
 </div>

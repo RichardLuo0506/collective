@@ -43,7 +43,16 @@
             .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: 'components/dashboard/dashboard.tpl.html',
-                controller: 'Dashboard as vm'
+                controller: 'Dashboard as dashboard'
+            })
+            .state('dashboard.home', {
+                url: '/home',
+                templateUrl: 'components/dashboard/dashboard-home/dashboard-home.tpl.html'
+            })
+            .state('dashboard.coinpickz', {
+                url: '/coinpickz',
+                templateUrl: 'components/dashboard/coinpickz/coinpickz.tpl.html',
+                controller: 'Coinpickz as vm'
             })
             .state('account', {
                 url: '/account',

@@ -4,12 +4,12 @@
 	top: 15px
 	right: 20px
 	z-index: 100
-	transition: 200ms $ease-natural
+	transition: 200ms 
 
 	i
 		font-size: 40px
 		color: $blue
-		transition: 200ms $ease-natural
+		transition: 200ms 
 
 	&:hover i
 		cursor: pointer
@@ -48,8 +48,7 @@
 	// reset transforms (Chrome bug)
 	transform: translateZ(0) translateX(0) rotateY(0deg)
 
-	&::after
-		content: ""
+	.perspective-view-overlay
 		position: absolute
 		top: 0
 		left: 0
@@ -64,7 +63,6 @@
 
 #view-wrapper
 	position: relative
-	overflow: hidden
 
 .component
 	margin: 0 auto
@@ -94,14 +92,14 @@
 
 		// solves a rendering bug in Chrome on Windows
 
-.animate #perspective-container::after
+.animate #perspective-container .perspective-view-overlay
 	opacity: 1
 	height: 101%
 	-webkit-transition: opacity 0.3s
 	transition: opacity 0.3s
 
 .animate #perspective-container:hover
-	&::after
+	.perspective-view-overlay
 		opacity: 0
 
 // Outer Nav
@@ -175,6 +173,11 @@
 		-moz-osx-font-smoothing: grayscale
 		-webkit-backface-visibility: hidden
 		backface-visibility: hidden
+	a span i.material-icons
+		font-size: 32px
+		margin-right: 15px
+		padding-bottom: 8px
+		vertical-align: middle
 
 // Effect Rotate Left
 
@@ -182,18 +185,18 @@
 	background: #e96e4f
 
 	#perspective-container
-		-webkit-transition: -webkit-transform 500ms $ease-natural
-		transition: transform 500ms $ease-natural
+		-webkit-transition: -webkit-transform 500ms 
+		transition: transform 500ms 
 		-webkit-transform-origin: 100% 50%
 		transform-origin: 100% 50%
 
-		&::after
+		.perspective-view-overlay
 			background: rgba(255, 255, 255, 0.6)
 
 	&.animate #perspective-container
 		-webkit-transform: perspective(1800px) translateZ(-1300px) translateX(0%) rotateY(-35deg)
 		transform: perspective(1800px) translateZ(-1300px) translateX(0%) rotateY(-35deg)
-		transition: 800ms $ease-natural
+		transition: 800ms 
 
 .no-csstransforms3d .effect-rotateleft.animate #perspective-container
 	left: -75%
@@ -203,8 +206,8 @@
 		opacity: 0
 		-webkit-transform: translateX(-500px) translateZ(-1000px)
 		transform: translateX(-500px) translateZ(-1000px)
-		-webkit-transition: 500ms $ease-natural
-		transition: 500ms $ease-natural
+		-webkit-transition: 500ms 
+		transition: 500ms 
 		-webkit-transform-style: preserve-3d
 		transform-style: preserve-3d
 		-webkit-transition-delay: 40ms
@@ -214,8 +217,8 @@
 		opacity: 0
 		-webkit-transform: translateX(-500px) translateZ(-1000px)
 		transform: translateX(-500px) translateZ(-1000px)
-		-webkit-transition: 500ms $ease-natural
-		transition: 500ms $ease-natural
+		-webkit-transition: 500ms 
+		transition: 500ms 
 		-webkit-transform-style: preserve-3d
 		transform-style: preserve-3d
 

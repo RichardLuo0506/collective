@@ -13,7 +13,6 @@
         init();
 
         function init() {
-            console.log('', 'boob');
         }
     }
 })();
